@@ -19,7 +19,7 @@ export const getRecipes = (data) => {
         axios({
             method: 'GET',
             params: { 'apiKey': REACT_APP_API_KEY },
-            url: `https://api.spoonacular.com/recipes/findByIngredients?ingredients=${data}&number=3`
+            url: `https://api.spoonacular.com/recipes/findByIngredients?ingredients=${data}&number=10`
         })
             .then(res => {
                 dispatch({ type: "GET_RECIPES", payload: res.data })
@@ -39,5 +39,26 @@ export const getDetail = (id) => {
         })
             .then(res => dispatch({ type: "GET_DETAIL", payload: res.data }))
             .catch(err => console.log(err))
+    }
+}
+
+export const setDetailLikes = (body) => {
+    return async dispatch => {
+        fetch("http://localhost:4000", {
+            method: "POST",
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body
+        })
+            .then(data => data.json())
+            .then(data => dispatch({ type: "SET_DETAIL_LIKES", payload: data }))
+    }
+}
+
+export const getDetailLikes = (payload) => {
+    return {
+        type: "GET_DETAIL_LIKES",
+        payload
     }
 }

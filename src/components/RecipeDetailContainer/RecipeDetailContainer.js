@@ -12,12 +12,10 @@ export default function RecipeDetailContainer() {
 
     useEffect(() => {
         dispatch(getDetail(id));
-    }, [id])
-
+    }, [id, dispatch])
     return (
-        <div>
-            {loading ? <h1>Loading...</h1> : <RecipeDetail recipe={recipe} />}
-
-        </div>
+        <main>
+            {loading ? <h1>Loading...</h1> : <RecipeDetail id={id} recipe={recipe} />}
+        </main>
     )
 }

@@ -21,12 +21,7 @@ const MainForm = () => {
 
     if (loading) return (<h1>Loading...</h1>)
     return (
-        <div style={{
-            textAlign: 'center',
-            width: '80%',
-            margin: '0 auto'
-        }}>
-            <h1>SEARCH WHATEVER</h1>
+        <main>
             <form action="get" onSubmit={handleSubmit} style={{ display: "flex", flexDirection: 'column', alignItems: 'center', position: 'relative' }}>
                 {Array(numberInputs).fill(
                     <>
@@ -46,7 +41,7 @@ const MainForm = () => {
             </form>
 
             {!!recipesArray.length && <Redirect to='/recipes' />}
-        </div>
+        </main>
     )
 };
 

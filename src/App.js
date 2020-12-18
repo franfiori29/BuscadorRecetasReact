@@ -4,10 +4,12 @@ import { BrowserRouter, Route } from 'react-router-dom';
 import RecipeDetailContainer from './components/RecipeDetailContainer/RecipeDetailContainer';
 import { Recipes } from './components/Recipes/Recipes';
 import 'semantic-ui-css/semantic.min.css'
+import SideBar from './components/SideBar/SideBar';
 
 const App = () => {
   return (
     <BrowserRouter>
+      <SideBar />
       <Route exact path="/">
         <MainForm />
       </Route>

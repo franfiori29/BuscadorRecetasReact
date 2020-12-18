@@ -1,7 +1,7 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Recipe from '../Recipe/Recipe';
-import recipes from './Recipes.module.css';
+import { Redirect } from 'react-router-dom';
 
 export const Recipes = () => {
 	const loading = useSelector(state => state.recipes.loading);
@@ -10,9 +10,11 @@ export const Recipes = () => {
 
 	if (loading) return <h1>Loading...</h1>;
 
+	if (!recipesArray.length && !loading) return <Redirect to="/" />
+
 	return (
-		<div className={recipes.container}>
+		<main className="container">
 			{recipesArray.map(recipe => <Recipe key={recipe.id} recipe={recipe} />)}
-		</div>
+		</main>
 	)
 }

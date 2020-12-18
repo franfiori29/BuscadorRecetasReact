@@ -9,6 +9,11 @@ const initialState = {
         details: {},
         loading: false,
         error: false
+    },
+    asideRecipes: {
+        loading: false,
+        asideArray: [],
+        error: false
     }
 }
 
@@ -22,14 +27,15 @@ export const reducer = (state = initialState, action) => {
         case "LOADING_DETAIL":
             return {
                 ...state,
-                recipeDetail: { loading: true, detail: {} }
+                recipeDetail: { loading: true, details: {}, error: false }
             }
         case "GET_RECIPES":
             return {
                 ...state,
                 recipes: {
                     loading: false,
-                    recipesArray: action.payload
+                    recipesArray: action.payload,
+                    error: false
                 }
             }
         case "GET_DETAIL":
@@ -37,7 +43,41 @@ export const reducer = (state = initialState, action) => {
                 ...state,
                 recipeDetail: {
                     loading: false,
-                    details: action.payload
+                    details: { ...action.payload },
+                    error: false
+                }
+            }
+        case "SET_DETAIL_LIKES":
+            return {
+                ...state,
+                recipeDetail: {
+                    loading: false,
+                    error: false,
+                    details: {
+                        ...state.recipeDetail.details,
+                        likes: action.payload.likes
+                    }
+                }
+            }
+        case "GET_DETAIL_LIKES":
+            return {
+                ...state,
+                recipeDetail: {
+                    loading: false,
+                    error: false,
+                    details: {
+                        ...state.recipeDetail.details,
+                        likes: action.payload
+                    }
+                }
+            }
+        case "GET_ASIDE":
+            return {
+                ...state,
+                asideRecipes: {
+                    loading: false,
+                    asideArray: action.payload,
+                    error: false
                 }
             }
         default:
