@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { getRecipes } from '../../actions/index';
 import Button from '@material-ui/core/Button'
 import { Redirect } from 'react-router-dom';
+import Loader from './../Loader/Loader';
 
 
 const MainForm = () => {
@@ -19,9 +20,10 @@ const MainForm = () => {
         dispatch(getRecipes(query));
     };
 
-    if (loading) return (<h1>Loading...</h1>)
+    if (loading) return <Loader />
     return (
-        <main>
+        <main className="mainform">
+            <h1 style={{ textAlign: 'center', margin: '30px 0 50px 0' }}>RECIPE FINDER</h1>
             <form action="get" onSubmit={handleSubmit} style={{ display: "flex", flexDirection: 'column', alignItems: 'center', position: 'relative' }}>
                 {Array(numberInputs).fill(
                     <>

@@ -38,6 +38,15 @@ export const reducer = (state = initialState, action) => {
                     error: false
                 }
             }
+        case "CLEAN_RECIPES":
+            return {
+                ...state,
+                recipes: {
+                    loading: false,
+                    recipesArray: [],
+                    error: false
+                }
+            }
         case "GET_DETAIL":
             return {
                 ...state,

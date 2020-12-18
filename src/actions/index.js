@@ -19,7 +19,7 @@ export const getRecipes = (data) => {
         axios({
             method: 'GET',
             params: { 'apiKey': REACT_APP_API_KEY },
-            url: `https://api.spoonacular.com/recipes/findByIngredients?ingredients=${data}&number=10`
+            url: `https://api.spoonacular.com/recipes/findByIngredients?ingredients=${data}&number=20`
         })
             .then(res => {
                 dispatch({ type: "GET_RECIPES", payload: res.data })

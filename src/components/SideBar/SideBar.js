@@ -19,6 +19,9 @@ const SideBar = () => {
 
 	return (
 		<aside>
+			<Link to="/" onClick={() => dispatch({ type: "CLEAN_RECIPES" })}>
+				<h1 style={{ textAlign: 'center' }}>HOME</h1>
+			</Link>
 			{recipes.map(recipe => (
 				<Link to={`/recipes/${recipe.id}`}>
 					<div style={{
@@ -29,7 +32,14 @@ const SideBar = () => {
 						margin: '10px 0'
 					}}>
 						<img style={{ width: '60%' }} src={recipe.image} />
-						<span style={{ fontSize: '20px', marginTop: '10px' }}>{recipe.title}</span>
+						<span style={{
+							fontSize: '20px',
+							marginTop: '10px',
+							textAlign: 'center',
+							width: '80%'
+						}}>
+							{recipe.title}
+						</span>
 						<span>{recipe.likes} <Icon name="like" /></span>
 					</div>
 				</Link>

@@ -1,8 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import heart from "../../heart.svg";
 import { Card, Icon, Image } from 'semantic-ui-react'
-import { Recipes } from '../Recipes/Recipes';
 
 const Recipe = ({ recipe }) => {
     return (
@@ -10,9 +8,9 @@ const Recipe = ({ recipe }) => {
             <Image src={recipe.image} wrapped ui={false} />
             <Card.Content>
                 <Card.Header>{recipe.title}</Card.Header>
-                <Card.Meta>
+                {/* <Card.Meta>
                     <span className='date'>0 <Icon name='like' onClick={() => alert("to-do")} /></span>
-                </Card.Meta>
+                </Card.Meta> */}
             </Card.Content>
             <Card.Content extra>
                 <Link to={`/recipes/${recipe.id}`}>
