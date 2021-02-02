@@ -33,6 +33,7 @@ export const getRecipes = (data: string) => {
 export const getDetail = (id: number) => {
 	return (dispatch: Dispatch<any>) => {
 		dispatch(loadingDetail());
+		dispatch(getChart(id));
 		axios({
 			method: "GET",
 			params: { apiKey: REACT_APP_API_KEY },
@@ -43,6 +44,31 @@ export const getDetail = (id: number) => {
 	};
 };
 
+export const getChart = (id: number) => {
+	return (dispatch: Dispatch<any>) => {
+		dispatch(loadingDetail());
+		axios({
+			method: "GET",
+			params: { apiKey: REACT_APP_API_KEY },
+			url: `https://api.spoonacular.com/recipes/${id}/tasteWidget`,
+		})
+			.then((res) => {
+				let first = res.data.indexOf("<script>") + 8;
+				let last = res.data.lastIndexOf("</script>");
+				try {
+					dispatch({
+						payload: res.data
+							.substring(first, last)
+							.replace(/(\r\n|\n|\r)/gm, ""),
+						type: "GET_CHART",
+					});
+				} catch (err) {
+					console.log(err);
+				}
+			})
+			.catch((err) => console.log(err));
+	};
+};
 export interface detailLikesBody {
 	id: string;
 	title: string;
@@ -52,15 +78,11 @@ export interface detailLikesBody {
 
 export const setDetailLikes = (body: detailLikesBody) => {
 	return async (dispatch: Dispatch<any>) => {
-		fetch("http://localhost:4000", {
-			method: "POST",
-			headers: {
-				"Content-Type": "application/json",
-			},
-			body: JSON.stringify(body),
-		})
-			.then((data) => data.json())
-			.then((data) => dispatch({ type: "SET_DETAIL_LIKES", payload: data }));
+		axios
+			.post("http://localhost:4000/", body)
+			.then((data) =>
+				dispatch({ type: "SET_DETAIL_LIKES", payload: data.data })
+			);
 	};
 };
 

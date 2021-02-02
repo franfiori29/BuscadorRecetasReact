@@ -6,6 +6,7 @@ import axios from "axios";
 import { Icon, Label, List } from "semantic-ui-react";
 import "./RecipeDetail.css";
 import { Link } from "react-router-dom";
+import Loader from "../Loader/Loader";
 
 interface IRecipeDetail {
 	id: string;
@@ -17,21 +18,28 @@ interface IRecipeDetail {
 	instructions: string;
 	servings: string;
 	readyInMinutes: string;
+	summary: string;
 }
 
 export default function RecipeDetail({
 	id,
 	recipe,
+	chart,
 }: {
 	id: string;
 	recipe: IRecipeDetail;
+	chart: string;
 }) {
 	const dispatch = useDispatch();
 	const detail = useSelector(
 		(state: RootStateOrAny) => state.recipeDetail.details
 	);
 
-	const [hover, setHover] = useState("");
+	const [hover, setHover] = useState<string>("");
+
+	useEffect(() => {
+		if (chart) eval(chart);
+	}, [chart]);
 
 	useEffect(() => {
 		axios.get("http://localhost:4000").then((data) => {
@@ -41,7 +49,7 @@ export default function RecipeDetail({
 			axios.get(`http://localhost:4000/${id}`).then((res) => {
 				dispatch(getDetailLikes(res.data));
 			});
-	}, [detail]);
+	}, [detail, dispatch, id]);
 
 	const handleClick = async () => {
 		try {
@@ -65,7 +73,7 @@ export default function RecipeDetail({
 	};
 
 	if (Object.keys(recipe).length < 4) {
-		<h1>Loading</h1>;
+		return <Loader />;
 	}
 
 	return (
@@ -137,7 +145,7 @@ export default function RecipeDetail({
 						onMouseOver={() => setHover("red")}
 						onMouseOut={() => setHover("")}
 						color={
-							JSON.parse(localStorage.getItem("likes") as string)[recipe.id]
+							JSON.parse(localStorage.getItem("likes") as string)?.[recipe.id]
 								? "red"
 								: "black"
 						}
@@ -151,7 +159,7 @@ export default function RecipeDetail({
 			<p
 				id='chart'
 				style={{ fontSize: "20px" }}
-				// dangerouslySetInnerHTML={{ __html: `${recipe.summary}` }}
+				dangerouslySetInnerHTML={{ __html: `${recipe.summary}` }}
 			></p>
 			{recipe.instructions && <h1>INSTRUCTIONS</h1>}
 			<p style={{ fontSize: "20px" }}>{recipe.instructions}</p>
@@ -161,6 +169,7 @@ export default function RecipeDetail({
                     <List.Item>{ing.original.toUpperCase()}</List.Item>
                 ))}
             </List> */}
+			<canvas id='taste-visualization'></canvas>
 		</div>
 	);
 }

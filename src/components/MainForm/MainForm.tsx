@@ -12,7 +12,7 @@ const MainForm = () => {
 	);
 	const dispatch = useDispatch();
 
-	const [numberInputs, setNumberInputs] = useState(1);
+	const [numberInputs, setNumberInputs] = useState<number>(1);
 
 	const handleSubmit = (e: any) => {
 		e.preventDefault();

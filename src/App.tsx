@@ -8,6 +8,11 @@ import "semantic-ui-css/semantic.min.css";
 import SideBar from "./components/SideBar/SideBar";
 
 const App = () => {
+	React.useEffect(() => {
+		if (!localStorage.getItem("likes"))
+			localStorage.setItem("likes", JSON.stringify({}));
+	}, []);
+
 	return (
 		<BrowserRouter>
 			<SideBar />

@@ -13,6 +13,7 @@ export default function RecipeDetailContainer() {
 	const loading = useSelector(
 		(state: RootStateOrAny) => state.recipeDetail.loading
 	);
+	const chart = useSelector((state: RootStateOrAny) => state.chart);
 	const dispatch = useDispatch();
 
 	useEffect(() => {
@@ -23,7 +24,11 @@ export default function RecipeDetailContainer() {
 
 	return (
 		<main>
-			{loading ? <h1>Loading...</h1> : <RecipeDetail id={id} recipe={recipe} />}
+			{loading ? (
+				<h1>Loading...</h1>
+			) : (
+				<RecipeDetail id={id} recipe={recipe} chart={chart} />
+			)}
 		</main>
 	);
 }

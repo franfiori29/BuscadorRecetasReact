@@ -6,7 +6,7 @@ import App from "./App";
 import { Provider } from "react-redux";
 import { store } from "./store/index";
 import "fontsource-roboto";
-import reportWebVitals from "./reportWebVitals";
+// import reportWebVitals from "./reportWebVitals";
 
 ReactDOM.render(
 	<Provider store={store}>

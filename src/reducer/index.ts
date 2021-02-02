@@ -16,6 +16,7 @@ const initialState = {
 		asideArray: [],
 		error: false,
 	},
+	chart: "",
 };
 
 interface IAction {
@@ -94,6 +95,11 @@ const reducer = (state = initialState, action: IAction) => {
 					asideArray: action.payload,
 					error: false,
 				},
+			};
+		case "GET_CHART":
+			return {
+				...state,
+				chart: action.payload,
 			};
 		default:
 			return state;

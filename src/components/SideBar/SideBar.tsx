@@ -15,12 +15,12 @@ const SideBar = () => {
 		axios.get("http://localhost:4000").then((data) => {
 			dispatch({ type: "GET_ASIDE", payload: data.data });
 		});
-	}, []);
+	}, [dispatch]);
 
 	if (!recipes.length) return <aside>Loading....</aside>;
 
 	return (
-		<aside>
+		<aside style={{ flexShrink: 0.1, minWidth: "300px" }}>
 			<Link to='/' onClick={() => dispatch({ type: "CLEAN_RECIPES" })}>
 				<h1 style={{ textAlign: "center" }}>HOME</h1>
 			</Link>
