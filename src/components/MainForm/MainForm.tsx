@@ -1,23 +1,23 @@
-import React, { useState, useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import React, { useState } from "react";
+import { useSelector, useDispatch, RootStateOrAny } from "react-redux";
 import { getRecipes } from "../../actions/index";
 import Button from "@material-ui/core/Button";
 import { Redirect } from "react-router-dom";
 import Loader from "./../Loader/Loader";
 
 const MainForm = () => {
-	const loading = useSelector((state) => state.recipes.loading);
-	const recipesArray = useSelector((state) => state.recipes.recipesArray);
+	const loading = useSelector((state: RootStateOrAny) => state.recipes.loading);
+	const recipesArray = useSelector(
+		(state: RootStateOrAny) => state.recipes.recipesArray
+	);
 	const dispatch = useDispatch();
 
 	const [numberInputs, setNumberInputs] = useState(1);
 
-	const handleSubmit = (e) => {
+	const handleSubmit = (e: any) => {
 		e.preventDefault();
-		let arrayInputs = [...e.target.childNodes].map((inp) => inp.value);
+		let arrayInputs = [...e.currentTarget.childNodes].map((inp) => inp.value);
 		let query = arrayInputs.join(",");
-		console.log(query);
-		debugger;
 		dispatch(getRecipes(query));
 	};
 

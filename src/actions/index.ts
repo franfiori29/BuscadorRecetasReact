@@ -1,4 +1,5 @@
 import axios from "axios";
+import { Dispatch } from "react";
 const { REACT_APP_API_KEY } = process.env;
 
 export function loadingSearch() {
@@ -13,8 +14,8 @@ export function loadingDetail() {
 	};
 }
 
-export const getRecipes = (data) => {
-	return (dispatch) => {
+export const getRecipes = (data: string) => {
+	return (dispatch: Dispatch<any>) => {
 		dispatch(loadingSearch());
 		axios({
 			method: "GET",
@@ -29,8 +30,8 @@ export const getRecipes = (data) => {
 };
 //https://api.spoonacular.com/recipes/{id}
 
-export const getDetail = (id) => {
-	return (dispatch) => {
+export const getDetail = (id: number) => {
+	return (dispatch: Dispatch<any>) => {
 		dispatch(loadingDetail());
 		axios({
 			method: "GET",
@@ -42,21 +43,28 @@ export const getDetail = (id) => {
 	};
 };
 
-export const setDetailLikes = (body) => {
-	return async (dispatch) => {
+export interface detailLikesBody {
+	id: string;
+	title: string;
+	image: string;
+	likes: number;
+}
+
+export const setDetailLikes = (body: detailLikesBody) => {
+	return async (dispatch: Dispatch<any>) => {
 		fetch("http://localhost:4000", {
 			method: "POST",
 			headers: {
 				"Content-Type": "application/json",
 			},
-			body,
+			body: JSON.stringify(body),
 		})
 			.then((data) => data.json())
 			.then((data) => dispatch({ type: "SET_DETAIL_LIKES", payload: data }));
 	};
 };
 
-export const getDetailLikes = (payload) => {
+export const getDetailLikes = (payload: number) => {
 	return {
 		type: "GET_DETAIL_LIKES",
 		payload,

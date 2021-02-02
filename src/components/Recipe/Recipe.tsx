@@ -2,7 +2,14 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { Card, Icon, Image } from "semantic-ui-react";
 
-const Recipe = ({ recipe }) => {
+export interface IRecipe {
+	id: string;
+	title: string;
+	image: string;
+	likes: number;
+}
+
+const Recipe = ({ recipe }: { recipe: IRecipe }) => {
 	return (
 		<Card style={{ margin: "10px", maxHeight: "400px" }}>
 			<Image src={recipe.image} wrapped ui={false} />

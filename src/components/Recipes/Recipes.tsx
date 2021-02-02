@@ -1,13 +1,15 @@
 import React from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { RootStateOrAny, useSelector } from "react-redux";
 import Recipe from "../Recipe/Recipe";
 import { Redirect } from "react-router-dom";
 import Loader from "./../Loader/Loader";
+import { IRecipe } from "../Recipe/Recipe";
 
 export const Recipes = () => {
-	const loading = useSelector((state) => state.recipes.loading);
-	const recipesArray = useSelector((state) => state.recipes.recipesArray);
-	const dispatch = useDispatch();
+	const loading = useSelector((state: RootStateOrAny) => state.recipes.loading);
+	const recipesArray = useSelector(
+		(state: RootStateOrAny) => state.recipes.recipesArray
+	);
 
 	if (loading) return <Loader />;
 
@@ -15,7 +17,7 @@ export const Recipes = () => {
 
 	return (
 		<main className='container'>
-			{recipesArray.map((recipe) => (
+			{recipesArray.map((recipe: IRecipe) => (
 				<Recipe key={recipe.id} recipe={recipe} />
 			))}
 		</main>

@@ -1,3 +1,5 @@
+import { detailLikesBody } from "../actions";
+
 const initialState = {
 	recipes: {
 		loading: false,
@@ -16,7 +18,12 @@ const initialState = {
 	},
 };
 
-export const reducer = (state = initialState, action) => {
+interface IAction {
+	type: string;
+	payload: number | detailLikesBody | Array<any>;
+}
+
+const reducer = (state = initialState, action: IAction) => {
 	switch (action.type) {
 		case "LOADING_SEARCH":
 			return {
@@ -51,7 +58,7 @@ export const reducer = (state = initialState, action) => {
 				...state,
 				recipeDetail: {
 					loading: false,
-					details: { ...action.payload },
+					details: { ...(action.payload as object) },
 					error: false,
 				},
 			};
@@ -63,7 +70,7 @@ export const reducer = (state = initialState, action) => {
 					error: false,
 					details: {
 						...state.recipeDetail.details,
-						likes: action.payload.likes,
+						likes: (action.payload as detailLikesBody).likes,
 					},
 				},
 			};
@@ -92,3 +99,5 @@ export const reducer = (state = initialState, action) => {
 			return state;
 	}
 };
+
+export default reducer;

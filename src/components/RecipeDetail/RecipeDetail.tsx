@@ -1,15 +1,35 @@
 import React, { useEffect, useState } from "react";
 import "./RecipeDetail.css";
-import { useDispatch, useSelector } from "react-redux";
+import { RootStateOrAny, useDispatch, useSelector } from "react-redux";
 import { setDetailLikes, getDetailLikes } from "../../actions";
 import axios from "axios";
 import { Icon, Label, List } from "semantic-ui-react";
 import "./RecipeDetail.css";
 import { Link } from "react-router-dom";
 
-export default function RecipeDetail({ id, recipe }) {
+interface IRecipeDetail {
+	id: string;
+	title: string;
+	image: string;
+	likes: number;
+	diets: Array<string>;
+	extendedIngredients: Array<object>;
+	instructions: string;
+	servings: string;
+	readyInMinutes: string;
+}
+
+export default function RecipeDetail({
+	id,
+	recipe,
+}: {
+	id: string;
+	recipe: IRecipeDetail;
+}) {
 	const dispatch = useDispatch();
-	const detail = useSelector((state) => state.recipeDetail.details);
+	const detail = useSelector(
+		(state: RootStateOrAny) => state.recipeDetail.details
+	);
 
 	const [hover, setHover] = useState("");
 
@@ -25,21 +45,19 @@ export default function RecipeDetail({ id, recipe }) {
 
 	const handleClick = async () => {
 		try {
-			const likes = JSON.parse(localStorage.getItem("likes"));
+			const likes = JSON.parse(localStorage.getItem("likes") as string);
 			if (likes[recipe.id]) delete likes[recipe.id];
 			else likes[recipe.id] = true;
 			localStorage.setItem("likes", JSON.stringify(likes));
 
-			let like = JSON.parse(localStorage.getItem("likes"))[recipe.id];
+			let like = JSON.parse(localStorage.getItem("likes") as string)[recipe.id];
 			dispatch(
-				setDetailLikes(
-					JSON.stringify({
-						id: recipe.id,
-						title: recipe.title,
-						image: recipe.image,
-						likes: like ? 1 : 0,
-					})
-				)
+				setDetailLikes({
+					id: recipe.id,
+					title: recipe.title,
+					image: recipe.image,
+					likes: like ? 1 : 0,
+				})
 			);
 		} catch (err) {
 			console.log(err);
@@ -69,7 +87,7 @@ export default function RecipeDetail({ id, recipe }) {
 			</Link>
 			<h1 style={{ fontSize: "40px" }}>{recipe.title}</h1>
 			{recipe &&
-				recipe.diets.map((rec, i) => (
+				recipe.diets.map((rec: string, i: number) => (
 					<Label color='teal' key={i}>
 						{rec.toUpperCase()}
 					</Label>
@@ -91,7 +109,7 @@ export default function RecipeDetail({ id, recipe }) {
 						content='INGREDIENTS'
 						style={{ fontWeight: "700", fontSize: "30px", margin: "50px 0" }}
 					/>
-					{recipe.extendedIngredients.map((ing, i) => (
+					{recipe.extendedIngredients.map((ing: any, i: number) => (
 						<List.Item key={i} style={{ fontSize: "20px", margin: "5px 0" }}>
 							<List.Header>{ing.original.toUpperCase()}</List.Header>
 						</List.Item>
@@ -119,7 +137,9 @@ export default function RecipeDetail({ id, recipe }) {
 						onMouseOver={() => setHover("red")}
 						onMouseOut={() => setHover("")}
 						color={
-							JSON.parse(localStorage.getItem("likes"))[recipe.id] ? "red" : ""
+							JSON.parse(localStorage.getItem("likes") as string)[recipe.id]
+								? "red"
+								: "black"
 						}
 						onClick={handleClick}
 						style={{ cursor: "pointer" }}

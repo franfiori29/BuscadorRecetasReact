@@ -1,12 +1,15 @@
 import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { RootStateOrAny, useDispatch, useSelector } from "react-redux";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import { Icon } from "semantic-ui-react";
+import { IRecipe } from "../Recipe/Recipe";
 
 const SideBar = () => {
 	const dispatch = useDispatch();
-	const recipes = useSelector((state) => state.asideRecipes.asideArray);
+	const recipes = useSelector(
+		(state: RootStateOrAny) => state.asideRecipes.asideArray
+	);
 
 	useEffect(() => {
 		axios.get("http://localhost:4000").then((data) => {
@@ -21,7 +24,7 @@ const SideBar = () => {
 			<Link to='/' onClick={() => dispatch({ type: "CLEAN_RECIPES" })}>
 				<h1 style={{ textAlign: "center" }}>HOME</h1>
 			</Link>
-			{recipes.map((recipe) => (
+			{recipes.map((recipe: IRecipe) => (
 				<Link to={`/recipes/${recipe.id}`} key={recipe.id}>
 					<div
 						style={{
@@ -32,7 +35,11 @@ const SideBar = () => {
 							margin: "10px 0",
 						}}
 					>
-						<img style={{ width: "60%" }} src={recipe.image} alt={recipe} />
+						<img
+							style={{ width: "60%" }}
+							src={recipe.image}
+							alt={recipe.title}
+						/>
 						<span
 							style={{
 								fontSize: "20px",
