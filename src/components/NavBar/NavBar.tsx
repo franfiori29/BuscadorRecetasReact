@@ -1,8 +1,10 @@
 import React from "react";
 import logo from "../../assets/images/logo.png";
+import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 
 function NavBar() {
+	const dispatch = useDispatch();
 	const history = useHistory();
 
 	return (
@@ -25,19 +27,19 @@ function NavBar() {
 				</span>
 			</div>
 			<div
-				onClick={() => {
-					console.log(history);
-					history.push("/");
+				style={{
+					position: "absolute",
+					left: "50%",
+					transform: "translate(-50%)",
+					cursor: "pointer",
 				}}
 			>
 				<img
 					src={logo}
 					alt='logo'
-					style={{
-						position: "absolute",
-						left: "50%",
-						transform: "translate(-50%)",
-						cursor: "pointer",
+					onClick={() => {
+						history.push("/");
+						dispatch({ type: "CLEAN_RECIPES" });
 					}}
 				/>
 			</div>
