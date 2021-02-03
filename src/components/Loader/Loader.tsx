@@ -10,6 +10,7 @@ export default function Loader() {
 				marginTop: "200px",
 				flex: 1,
 				color: "#AAC4C3",
+				minHeight: "100vh",
 			}}
 		>
 			<CircularProgress

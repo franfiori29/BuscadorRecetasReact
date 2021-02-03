@@ -20,43 +20,82 @@ const SideBar = () => {
 	if (!recipes.length) return <aside>Loading....</aside>;
 
 	return (
-		<aside style={{ flexShrink: 0.1, minWidth: "300px" }}>
-			<Link to='/' onClick={() => dispatch({ type: "CLEAN_RECIPES" })}>
-				<h1 style={{ textAlign: "center" }}>HOME</h1>
-			</Link>
-			{recipes.map((recipe: IRecipe) => (
-				<Link to={`/recipes/${recipe.id}`} key={recipe.id}>
-					<div
-						style={{
-							width: "100%",
-							alignItems: "center",
-							display: "flex",
-							flexDirection: "column",
-							margin: "10px 0",
+		<section
+			style={{
+				margin: "30px 0",
+				color: "white",
+				backgroundColor: "#2c2e2e",
+				paddingTop: "30px",
+			}}
+		>
+			<h1
+				style={{
+					textAlign: "center",
+					marginBottom: "30px",
+					fontFamily: "Aristotelica",
+					fontWeight: 600,
+					fontSize: "24px",
+				}}
+			>
+				MOST LIKED RECIPES
+			</h1>
+			<div
+				style={{
+					display: "flex",
+					flexWrap: "wrap",
+					justifyContent: "center",
+				}}
+			>
+				{recipes.map((recipe: IRecipe) => (
+					<Link
+						to={`/recipes/${recipe.id}`}
+						key={recipe.id}
+						style={{ width: "400px", margin: "10px 20px" }}
+						onClick={() => {
+							window.scrollTo(0, 0);
 						}}
 					>
-						<img
-							style={{ width: "60%" }}
-							src={recipe.image}
-							alt={recipe.title}
-						/>
-						<span
+						<div
 							style={{
-								fontSize: "20px",
-								marginTop: "10px",
-								textAlign: "center",
-								width: "80%",
+								display: "flex",
+								alignItems: "center",
+								flexDirection: "column",
 							}}
 						>
-							{recipe.title}
-						</span>
-						<span>
-							{recipe.likes} <Icon name='like' />
-						</span>
-					</div>
-				</Link>
-			))}
-		</aside>
+							<img
+								style={{ width: "100%" }}
+								src={recipe.image}
+								alt={recipe.title}
+							/>
+							<span
+								style={{
+									fontSize: "18px",
+									textAlign: "center",
+									marginTop: "20px",
+									color: "#f5f3f3",
+									fontFamily: "Aristotelica",
+									fontWeight: 600,
+								}}
+							>
+								{recipe.title.toUpperCase()}
+							</span>
+							<span
+								style={{
+									fontSize: "16px",
+									textAlign: "center",
+									marginTop: "10px",
+									fontFamily: "Baron Neue",
+									fontWeight: 400,
+									color: "#e9e9e9",
+								}}
+							>
+								{recipe.likes} LIKES <Icon name='like' />
+							</span>
+						</div>
+					</Link>
+				))}
+			</div>
+		</section>
 	);
 };
 

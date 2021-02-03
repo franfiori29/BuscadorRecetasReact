@@ -6,6 +6,8 @@ import RecipeDetailContainer from "./components/RecipeDetailContainer/RecipeDeta
 import { Recipes } from "./components/Recipes/Recipes";
 import "semantic-ui-css/semantic.min.css";
 import SideBar from "./components/SideBar/SideBar";
+import NavBar from "./components/NavBar/NavBar";
+import Footer from "./components/Footer/Footer";
 
 const App = () => {
 	React.useEffect(() => {
@@ -15,7 +17,7 @@ const App = () => {
 
 	return (
 		<BrowserRouter>
-			<SideBar />
+			<NavBar />
 			<Route exact path='/'>
 				<MainForm />
 			</Route>
@@ -25,6 +27,8 @@ const App = () => {
 			<Route exact path='/recipes/:id'>
 				<RecipeDetailContainer />
 			</Route>
+			<SideBar />
+			<Footer />
 		</BrowserRouter>
 	);
 };

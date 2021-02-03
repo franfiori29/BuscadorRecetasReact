@@ -80,7 +80,7 @@ export default function RecipeDetail({
 		<div
 			style={{
 				textAlign: "center",
-				width: "80%",
+				width: "100%",
 				margin: "0 auto",
 				position: "relative",
 			}}
@@ -88,7 +88,7 @@ export default function RecipeDetail({
 			<Link to='/recipes'>
 				<Icon
 					color='black'
-					style={{ position: "absolute", left: "10px" }}
+					style={{ position: "absolute", left: 0 }}
 					name='arrow left'
 					size='big'
 				/>
@@ -102,27 +102,43 @@ export default function RecipeDetail({
 				))}{" "}
 			<br />
 			<div style={{ display: "flex", flexWrap: "wrap", margin: "20px 0" }}>
-				<img style={{ flex: 1, maxWidth: "100%" }} src={recipe.image} alt='' />
+				<img
+					style={{
+						flex: 1,
+						maxWidth: "100%",
+						outline: "1px solid black",
+						outlineOffset: "-1px",
+					}}
+					src={recipe.image}
+					alt=''
+				/>
 				<List
 					style={{
 						fontSize: "15px",
 						display: "flex",
 						flexDirection: "column",
-						justifyContent: "center",
 						alignItems: "center",
 						flex: 1,
 					}}
 				>
-					<List.Header
-						content='INGREDIENTS'
-						style={{ fontWeight: "700", fontSize: "30px", margin: "50px 0" }}
-					/>
-					{recipe.extendedIngredients.map((ing: any, i: number) => (
-						<List.Item key={i} style={{ fontSize: "20px", margin: "5px 0" }}>
-							<List.Header>{ing.original.toUpperCase()}</List.Header>
-						</List.Item>
-					))}
-				</List>{" "}
+					<h1
+						style={{
+							fontWeight: 600,
+							fontSize: "30px",
+							alignSelf: "flex-start",
+							marginLeft: "30px",
+						}}
+					>
+						{recipe.title.toUpperCase()}
+					</h1>
+					<div>
+						{recipe.extendedIngredients.map((ing: any, i: number) => (
+							<List.Item key={i} style={{ fontSize: "20px", margin: "5px 0" }}>
+								<List.Header>{ing.original.toUpperCase()}</List.Header>
+							</List.Item>
+						))}
+					</div>
+				</List>
 				<br />
 			</div>
 			<div style={{ display: "flex", justifyContent: "center" }}>
@@ -169,7 +185,7 @@ export default function RecipeDetail({
                     <List.Item>{ing.original.toUpperCase()}</List.Item>
                 ))}
             </List> */}
-			<canvas id='taste-visualization'></canvas>
+			{/* <canvas id='taste-visualization'></canvas> */}
 		</div>
 	);
 }
