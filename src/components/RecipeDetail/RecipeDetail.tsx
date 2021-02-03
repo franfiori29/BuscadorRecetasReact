@@ -79,10 +79,11 @@ export default function RecipeDetail({
 	return (
 		<div
 			style={{
-				textAlign: "center",
 				width: "100%",
 				margin: "0 auto",
 				position: "relative",
+				fontFamily: "Aristotelica",
+				color: "#868686",
 			}}
 		>
 			<Link to='/recipes'>
@@ -93,15 +94,17 @@ export default function RecipeDetail({
 					size='big'
 				/>
 			</Link>
-			<h1 style={{ fontSize: "40px" }}>{recipe.title}</h1>
+			{/* <h1 style={{ fontSize: "40px" }}>{recipe.title}</h1>
 			{recipe &&
 				recipe.diets.map((rec: string, i: number) => (
 					<Label color='teal' key={i}>
 						{rec.toUpperCase()}
 					</Label>
 				))}{" "}
-			<br />
-			<div style={{ display: "flex", flexWrap: "wrap", margin: "20px 0" }}>
+			<br /> */}
+			<div
+				style={{ display: "flex", flexWrap: "wrap", padding: "80px 0 20px" }}
+			>
 				<img
 					style={{
 						flex: 1,
@@ -117,31 +120,92 @@ export default function RecipeDetail({
 						fontSize: "15px",
 						display: "flex",
 						flexDirection: "column",
-						alignItems: "center",
+						alignItems: "flex-start",
 						flex: 1,
+						paddingLeft: "80px",
 					}}
 				>
 					<h1
 						style={{
 							fontWeight: 600,
 							fontSize: "30px",
-							alignSelf: "flex-start",
-							marginLeft: "30px",
+							color: "black",
 						}}
 					>
 						{recipe.title.toUpperCase()}
+						<br />
+						{recipe &&
+							recipe.diets.map((rec: string, i: number) => (
+								<Label color='grey' key={i}>
+									{rec.toUpperCase()}
+								</Label>
+							))}
 					</h1>
+					<div
+						style={{
+							height: "1px",
+							backgroundColor: "#868686",
+							width: "25%",
+							margin: "40px 0 20px",
+						}}
+					></div>
+					<div style={{ marginBottom: "40px", fontFamily: "fantasy" }}>
+						<p
+							style={{
+								fontSize: "16px",
+								margin: "20px 5px",
+								display: "inline-block",
+								letterSpacing: "2px",
+							}}
+						>
+							<Icon name='food' size='big' color='grey' />
+							{recipe.servings} SERVINGS
+						</p>
+						<p
+							style={{
+								fontSize: "15px",
+								margin: "10px 5px",
+								display: "inline-block",
+								letterSpacing: "2px",
+							}}
+						>
+							<Icon name='stopwatch' size='big' color='grey' />
+							{recipe.readyInMinutes} MINUTES
+						</p>
+						<Icon
+							name='like'
+							className={hover}
+							onMouseOver={() => setHover("red")}
+							onMouseOut={() => setHover("")}
+							color={
+								JSON.parse(localStorage.getItem("likes") as string)?.[recipe.id]
+									? "red"
+									: "grey"
+							}
+							onClick={handleClick}
+							style={{ cursor: "pointer", marginLeft: "10px" }}
+							size='large'
+						/>
+						<span style={{ marginLeft: "10px", fontSize: "20px" }}>
+							{recipe.likes}
+						</span>
+					</div>
 					<div>
+						<p style={{ fontSize: "22px", fontWeight: 600 }}>INGREDIENTS</p>
 						{recipe.extendedIngredients.map((ing: any, i: number) => (
-							<List.Item key={i} style={{ fontSize: "20px", margin: "5px 0" }}>
-								<List.Header>{ing.original.toUpperCase()}</List.Header>
-							</List.Item>
+							<ul key={i} style={{ listStyleType: "none", paddingLeft: 0 }}>
+								<li
+									style={{ fontSize: "16px", margin: "5px 0", fontWeight: 800 }}
+								>
+									□ {ing.original.toUpperCase()}
+								</li>
+							</ul>
 						))}
 					</div>
 				</List>
 				<br />
 			</div>
-			<div style={{ display: "flex", justifyContent: "center" }}>
+			{/* <div style={{ display: "flex", justifyContent: "center" }}>
 				<p style={{ fontSize: "20px", margin: "10px 5px" }}>
 					Servings: {recipe.servings} <Icon name='food' size='big' />
 				</p>
@@ -171,12 +235,12 @@ export default function RecipeDetail({
 					/>
 					<span style={{ fontSize: "30px" }}>{recipe.likes}</span>
 				</div>
-			</div>
-			<p
+			</div> */}
+			{/* <p
 				id='chart'
 				style={{ fontSize: "20px" }}
 				dangerouslySetInnerHTML={{ __html: `${recipe.summary}` }}
-			></p>
+			></p> */}
 			{recipe.instructions && <h1>INSTRUCTIONS</h1>}
 			<p style={{ fontSize: "20px" }}>{recipe.instructions}</p>
 			{/* <List bulleted style={{ fontSize: '15px' }}>

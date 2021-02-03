@@ -4,7 +4,7 @@ import { BrowserRouter, Route } from "react-router-dom";
 import MainForm from "./components/MainForm/MainForm";
 import RecipeDetailContainer from "./components/RecipeDetailContainer/RecipeDetailContainer";
 import { Recipes } from "./components/Recipes/Recipes";
-import "semantic-ui-css/semantic.min.css";
+// import "semantic-ui-css/semantic.min.css";
 import SideBar from "./components/SideBar/SideBar";
 import NavBar from "./components/NavBar/NavBar";
 import Footer from "./components/Footer/Footer";

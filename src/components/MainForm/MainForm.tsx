@@ -23,9 +23,9 @@ const MainForm = () => {
 	const [input, setInput] = useState<string>("");
 	const [suggestions, setSuggestions] = useState<Ingredient[]>([]);
 
-	const handleSubmit = () => {
+	const handleSubmit = (e: React.FormEvent) => {
+		e.preventDefault();
 		let query = input.trim().split(" ").join(",");
-		console.log(query);
 		dispatch(getRecipes(query));
 	};
 
@@ -67,7 +67,9 @@ const MainForm = () => {
 					>
 						SELECT THE INGRIDIENTS YOU HAVE ON YOUR FRIDGE
 					</h1>
-					<div
+
+					<form
+						onSubmit={handleSubmit}
 						style={{
 							display: "flex",
 							justifyContent: "center",
@@ -80,9 +82,12 @@ const MainForm = () => {
 								margin: "5px",
 								height: "40px",
 								width: "60%",
+								fontSize: "18px",
+								fontFamily: "Aristotelica",
 							}}
 							type='text'
 							required
+							placeholder='Example: CHOCOLATE STRAWBERRY'
 							value={input}
 							onChange={handleChange}
 						/>
@@ -104,7 +109,8 @@ const MainForm = () => {
 						>
 							<SearchIcon />
 						</button>
-					</div>
+					</form>
+
 					<div style={{ marginTop: "50px" }}>
 						<h3
 							style={{

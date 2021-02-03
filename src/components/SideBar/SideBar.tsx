@@ -35,6 +35,7 @@ const SideBar = () => {
 					fontFamily: "Aristotelica",
 					fontWeight: 600,
 					fontSize: "24px",
+					letterSpacing: "2px",
 				}}
 			>
 				MOST LIKED RECIPES

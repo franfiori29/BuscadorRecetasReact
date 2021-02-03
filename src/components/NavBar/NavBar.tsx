@@ -8,23 +8,18 @@ function NavBar() {
 	const history = useHistory();
 
 	return (
-		<header
-			style={{ height: "10vh", display: "flex", width: "80%", margin: "auto" }}
-		>
+		<header>
 			<div
-				style={{
-					display: "flex",
-					alignItems: "center",
-					justifyContent: "center",
-					padding: "0 10px",
-				}}
+				className='items-container'
+				// style={{
+				// 	display: "flex",
+				// 	alignItems: "center",
+				// 	justifyContent: "center",
+				// 	padding: "0 10px",
+				// }}
 			>
-				<span className='navbar-item' style={{ padding: "0 10px" }}>
-					ABOUT US
-				</span>
-				<span className='navbar-item' style={{ padding: "0 10px" }}>
-					HELP
-				</span>
+				<span className='navbar-item'>ABOUT US</span>
+				<span className='navbar-item'>HELP</span>
 			</div>
 			<div
 				style={{

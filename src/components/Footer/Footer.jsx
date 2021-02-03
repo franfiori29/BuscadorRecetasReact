@@ -1,11 +1,24 @@
-import React from 'react'
+import React from "react";
 
 function Footer() {
 	return (
-		<div style={{ height: '200px' }}>
-			FOOTER
+		<div
+			style={{
+				fontSize: "20px",
+				height: "150px",
+				display: "flex",
+				flexDirection: "column",
+				justifyContent: "center",
+				alignItems: "center",
+			}}
+		>
+			<p>© Copyright 2021 Recipe Finder. All Rights Reserved.</p>
+			<div>
+				<span style={{ marginRight: "20px" }}>Terms of Service</span>
+				<span style={{ marginLeft: "20px" }}>Privacy Policy</span>
+			</div>
 		</div>
-	)
+	);
 }
 
-export default Footer
+export default Footer;

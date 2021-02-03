@@ -35,6 +35,7 @@ const Recipe = ({ recipe }: { recipe: IRecipe }) => {
 						outline: "1px solid black",
 						outlineOffset: "-1px",
 					}}
+					onClick={() => window.scrollTo(0, 0)}
 				/>
 			</Link>
 			{/* </div> */}

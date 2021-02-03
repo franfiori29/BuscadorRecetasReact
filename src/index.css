@@ -13,6 +13,11 @@
   src: local('Montserrat'), url(./assets/fonts/Montserrat-Regular.otf) format('truetype');
 }
 
+:root {
+  --clr-gray: #868686;
+  --clr-dark: #2C2E2E;
+}
+
 body {
   margin: 0;
   padding: 0;
@@ -22,13 +27,22 @@ body {
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+  font-family: 'Aristotelica', source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
 }
 
-/* #root {
+header {
+  display: flex;
+  height: 10vh;
   width: 80%;
-  margin: auto;
-} */
+  margin: 20px auto;
+}
+
+.items-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 10px;
+}
 
 .navbar-item {
   font-family: 'Aristotelica';
