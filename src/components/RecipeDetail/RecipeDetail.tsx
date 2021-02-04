@@ -83,10 +83,7 @@ export default function RecipeDetail({
 	return (
 		<div className='recipe-detail-container'>
 			<Link to='/recipes'>
-				<ArrowBackIcon
-					color='black'
-					style={{ position: "absolute", left: 0 }}
-				/>
+				<ArrowBackIcon style={{ position: "absolute", left: 0 }} />
 			</Link>
 
 			<div className='recipe-detail-primary'>
