@@ -80,6 +80,8 @@ const MainForm = () => {
 							placeholder='BACON EGG BREAD'
 							value={input}
 							onChange={handleChange}
+							onFocus={(e) => (e.target.placeholder = "")}
+							onBlur={(e) => (e.target.placeholder = "BACON EGG BREAD")}
 						/>
 						<button type='submit' onClick={handleSubmit}>
 							<SearchIcon />

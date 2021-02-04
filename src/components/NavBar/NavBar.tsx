@@ -9,10 +9,10 @@ function NavBar() {
 
 	return (
 		<header>
-			<div className='items-container'>
+			{/* <div className='items-container'>
 				<span className='navbar-item'>ABOUT US</span>
 				<span className='navbar-item'>HELP</span>
-			</div>
+			</div> */}
 			<div className='logo-container'>
 				<img
 					src={logo}

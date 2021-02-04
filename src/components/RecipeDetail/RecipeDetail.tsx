@@ -134,6 +134,7 @@ export default function RecipeDetail({
 									]
 										? "red"
 										: "grey",
+									cursor: "pointer",
 								}}
 							/>
 							{recipe.likes}
