@@ -20,76 +20,30 @@ const SideBar = () => {
 	if (!recipes.length) return <aside>Loading....</aside>;
 
 	return (
-		<section
-			style={{
-				margin: "30px 0",
-				color: "white",
-				backgroundColor: "#2c2e2e",
-				paddingTop: "30px",
-			}}
-		>
-			<h1
-				style={{
-					textAlign: "center",
-					marginBottom: "30px",
-					fontFamily: "Aristotelica",
-					fontWeight: 600,
-					fontSize: "24px",
-					letterSpacing: "2px",
-				}}
-			>
-				MOST LIKED RECIPES
-			</h1>
-			<div
-				style={{
-					display: "flex",
-					flexWrap: "wrap",
-					justifyContent: "center",
-				}}
-			>
+		<section>
+			<h1 className='section-header'>MOST LIKED RECIPES</h1>
+			<div className='section-recipes-container'>
 				{recipes.map((recipe: IRecipe) => (
 					<Link
 						to={`/recipes/${recipe.id}`}
 						key={recipe.id}
-						style={{ width: "400px", margin: "10px 20px" }}
+						className='section-link'
 						onClick={() => {
 							window.scrollTo(0, 0);
 						}}
 					>
-						<div
-							style={{
-								display: "flex",
-								alignItems: "center",
-								flexDirection: "column",
-							}}
-						>
+						<div className='section-recipe'>
 							<img
 								style={{ width: "100%" }}
 								src={recipe.image}
 								alt={recipe.title}
 							/>
-							<span
-								style={{
-									fontSize: "18px",
-									textAlign: "center",
-									marginTop: "20px",
-									color: "#f5f3f3",
-									fontFamily: "Aristotelica",
-									fontWeight: 600,
-								}}
-							>
-								{recipe.title.toUpperCase()}
+							<span className='section-recipe-title'>
+								{recipe.title.length > 36
+									? recipe.title.substring(0, 30).toUpperCase() + "..."
+									: recipe.title.toUpperCase()}
 							</span>
-							<span
-								style={{
-									fontSize: "16px",
-									textAlign: "center",
-									marginTop: "10px",
-									fontFamily: "Baron Neue",
-									fontWeight: 400,
-									color: "#e9e9e9",
-								}}
-							>
+							<span className='section-recipe-likes'>
 								{recipe.likes} LIKES <Icon name='like' />
 							</span>
 						</div>

@@ -2,7 +2,7 @@ import React from "react";
 
 function Footer() {
 	return (
-		<div
+		<footer
 			style={{
 				fontSize: "20px",
 				height: "150px",
@@ -17,7 +17,7 @@ function Footer() {
 				<span style={{ marginRight: "20px" }}>Terms of Service</span>
 				<span style={{ marginLeft: "20px" }}>Privacy Policy</span>
 			</div>
-		</div>
+		</footer>
 	);
 }
 

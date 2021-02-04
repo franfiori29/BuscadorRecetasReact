@@ -51,113 +51,39 @@ const MainForm = () => {
 	if (loading) return <Loader />;
 	return (
 		<main className='mainform'>
-			<div className='homeDiv' style={{ marginRight: "100px" }}>
+			<div className='home-div'>
 				<img src={homeImage} alt='home' />
 			</div>
-			<div className='homeDiv'>
+			<div className='home-div'>
 				<div>
-					<h1
-						style={{
-							textAlign: "center",
-							margin: "30px 0 50px 0",
-							fontFamily: "Aristotelica",
-							fontWeight: 500,
-							color: "#333333",
-						}}
-					>
+					<h1 className='form-title'>
 						SELECT THE INGRIDIENTS YOU HAVE ON YOUR FRIDGE
 					</h1>
 
-					<form
-						onSubmit={handleSubmit}
-						style={{
-							display: "flex",
-							justifyContent: "center",
-							alignItems: "center",
-						}}
-					>
+					<form onSubmit={handleSubmit}>
 						<input
-							style={{
-								textAlign: "center",
-								margin: "5px",
-								height: "40px",
-								width: "60%",
-								fontSize: "18px",
-								fontFamily: "Aristotelica",
-							}}
 							type='text'
 							required
 							placeholder='Example: CHOCOLATE STRAWBERRY'
 							value={input}
 							onChange={handleChange}
 						/>
-						<button
-							type='submit'
-							style={{
-								backgroundColor: "#333333",
-								borderRadius: "30px",
-								color: "white",
-								borderWidth: 0,
-								width: "50px",
-								height: "50px",
-								display: "flex",
-								alignItems: "center",
-								justifyContent: "center",
-								marginLeft: "15px",
-							}}
-							onClick={handleSubmit}
-						>
+						<button type='submit' onClick={handleSubmit}>
 							<SearchIcon />
 						</button>
 					</form>
 
-					<div style={{ marginTop: "50px" }}>
-						<h3
-							style={{
-								textAlign: "center",
-								color: "#868686",
-							}}
-						>
-							SUGGESTIONS
-						</h3>
-						<div
-							style={{
-								display: "flex",
-								flexWrap: "wrap",
-								justifyContent: "center",
-								textAlign: "center",
-								color: "#868686",
-							}}
-						>
+					<div className='suggestions-container'>
+						<h3>SUGGESTIONS</h3>
+						<div className='suggestions-items-container'>
 							{suggestions.length !== 0
 								? suggestions.map((el) => (
-										<span
-											key={el.id}
-											className='suggestion-item'
-											style={{
-												border: "2px solid #868686",
-												padding: "5px 2px",
-												flexBasis: "120px",
-												textAlign: "center",
-												margin: "5px",
-												fontFamily: "Aristotelica",
-											}}
-										>
+										<span key={el.id} className='suggestion-item'>
 											{el.name}
 										</span>
 								  ))
 								: ["BANANA", "WINE", "TOMATO"].map((el, i) => (
-										<span
-											key={i}
-											className='suggestion-item'
-											style={{
-												border: "2px solid #868686",
-												padding: "5px 2px",
-												flexBasis: "120px",
-												margin: "5px",
-												fontFamily: "Aristotelica",
-											}}
-										>
+										<span key={i} className='suggestion-item'>
 											{el}
 										</span>
 								  ))}

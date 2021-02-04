@@ -20,15 +20,11 @@ export default function RecipeDetailContainer() {
 		dispatch(getDetail(+id));
 	}, [id, dispatch]);
 
-	if (Object.keys(recipe).length < 4) return <Loader />;
+	if (Object.keys(recipe).length < 4 || loading) return <Loader />;
 
 	return (
 		<main>
-			{loading ? (
-				<h1>Loading...</h1>
-			) : (
-				<RecipeDetail id={id} recipe={recipe} chart={chart} />
-			)}
+			<RecipeDetail id={id} recipe={recipe} chart={chart} />
 		</main>
 	);
 }

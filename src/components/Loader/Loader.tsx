@@ -9,7 +9,7 @@ export default function Loader() {
 				justifyContent: "center",
 				marginTop: "200px",
 				flex: 1,
-				color: "#AAC4C3",
+				color: "#525252",
 				minHeight: "100vh",
 			}}
 		>

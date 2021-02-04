@@ -7,6 +7,10 @@ import { Icon, Label, List } from "semantic-ui-react";
 import "./RecipeDetail.css";
 import { Link } from "react-router-dom";
 import Loader from "../Loader/Loader";
+import ArrowBackIcon from "@material-ui/icons/ArrowBack";
+import RestaurantIcon from "@material-ui/icons/Restaurant";
+import TimerIcon from "@material-ui/icons/Timer";
+import FavoriteIcon from "@material-ui/icons/Favorite";
 
 interface IRecipeDetail {
 	id: string;
@@ -77,44 +81,16 @@ export default function RecipeDetail({
 	}
 
 	return (
-		<div
-			style={{
-				width: "100%",
-				margin: "0 auto",
-				position: "relative",
-				fontFamily: "Aristotelica",
-				color: "#868686",
-			}}
-		>
+		<div className='recipe-detail-container'>
 			<Link to='/recipes'>
-				<Icon
+				<ArrowBackIcon
 					color='black'
 					style={{ position: "absolute", left: 0 }}
-					name='arrow left'
-					size='big'
 				/>
 			</Link>
-			{/* <h1 style={{ fontSize: "40px" }}>{recipe.title}</h1>
-			{recipe &&
-				recipe.diets.map((rec: string, i: number) => (
-					<Label color='teal' key={i}>
-						{rec.toUpperCase()}
-					</Label>
-				))}{" "}
-			<br /> */}
-			<div
-				style={{ display: "flex", flexWrap: "wrap", padding: "80px 0 20px" }}
-			>
-				<img
-					style={{
-						flex: 1,
-						maxWidth: "100%",
-						outline: "1px solid black",
-						outlineOffset: "-1px",
-					}}
-					src={recipe.image}
-					alt=''
-				/>
+
+			<div className='recipe-detail-primary'>
+				<img src={recipe.image} alt='' />
 				<List
 					style={{
 						fontSize: "15px",
@@ -125,78 +101,56 @@ export default function RecipeDetail({
 						paddingLeft: "80px",
 					}}
 				>
-					<h1
-						style={{
-							fontWeight: 600,
-							fontSize: "30px",
-							color: "black",
-						}}
-					>
+					<h1 className='recipe-detail-title'>
 						{recipe.title.toUpperCase()}
 						<br />
 						{recipe &&
 							recipe.diets.map((rec: string, i: number) => (
-								<Label color='grey' key={i}>
+								<span className='recipe-label' key={i}>
 									{rec.toUpperCase()}
-								</Label>
+								</span>
 							))}
 					</h1>
-					<div
-						style={{
-							height: "1px",
-							backgroundColor: "#868686",
-							width: "25%",
-							margin: "40px 0 20px",
-						}}
-					></div>
-					<div style={{ marginBottom: "40px", fontFamily: "fantasy" }}>
-						<p
-							style={{
-								fontSize: "16px",
-								margin: "20px 5px",
-								display: "inline-block",
-								letterSpacing: "2px",
-							}}
-						>
-							<Icon name='food' size='big' color='grey' />
+					<div className='recipe-divider'></div>
+					<div className='recipe-info-container'>
+						<span className='recipe-servings'>
+							<RestaurantIcon color='grey' className='recipe-icon' />
 							{recipe.servings} SERVINGS
-						</p>
-						<p
-							style={{
-								fontSize: "15px",
-								margin: "10px 5px",
-								display: "inline-block",
-								letterSpacing: "2px",
-							}}
-						>
-							<Icon name='stopwatch' size='big' color='grey' />
+						</span>
+						<span className='recipe-servings'>
+							<TimerIcon color='grey' className='recipe-icon' />
 							{recipe.readyInMinutes} MINUTES
-						</p>
-						<Icon
-							name='like'
-							className={hover}
-							onMouseOver={() => setHover("red")}
-							onMouseOut={() => setHover("")}
-							color={
-								JSON.parse(localStorage.getItem("likes") as string)?.[recipe.id]
-									? "red"
-									: "grey"
-							}
-							onClick={handleClick}
-							style={{ cursor: "pointer", marginLeft: "10px" }}
-							size='large'
-						/>
-						<span style={{ marginLeft: "10px", fontSize: "20px" }}>
+						</span>
+						<span className='recipe-servings'>
+							<FavoriteIcon
+								className={`${hover} recipe-icon`}
+								onMouseOver={() => setHover("red")}
+								onMouseOut={() => setHover("")}
+								color={
+									JSON.parse(localStorage.getItem("likes") as string)?.[
+										recipe.id
+									]
+										? "red"
+										: "grey"
+								}
+								onClick={handleClick}
+								style={{
+									color: JSON.parse(localStorage.getItem("likes") as string)?.[
+										recipe.id
+									]
+										? "red"
+										: "grey",
+								}}
+								size='large'
+							/>
 							{recipe.likes}
 						</span>
 					</div>
 					<div>
-						<p style={{ fontSize: "22px", fontWeight: 600 }}>INGREDIENTS</p>
+						<p className='recipe-ingredients-title'>INGREDIENTS</p>
 						{recipe.extendedIngredients.map((ing: any, i: number) => (
-							<ul key={i} style={{ listStyleType: "none", paddingLeft: 0 }}>
-								<li
-									style={{ fontSize: "16px", margin: "5px 0", fontWeight: 800 }}
-								>
+							<ul className='recipe-ingredients-list' key={i}>
+								<li className='recipe-ingredient-item'>
 									□ {ing.original.toUpperCase()}
 								</li>
 							</ul>
@@ -242,7 +196,7 @@ export default function RecipeDetail({
 				dangerouslySetInnerHTML={{ __html: `${recipe.summary}` }}
 			></p> */}
 			{recipe.instructions && <h1>INSTRUCTIONS</h1>}
-			<p style={{ fontSize: "20px" }}>{recipe.instructions}</p>
+			<p style={{ fontSize: "24px" }}>{recipe.instructions}</p>
 			{/* <List bulleted style={{ fontSize: '15px' }}>
                 <List.Header />
                 {recipe.extendedIngredients.map(ing => (

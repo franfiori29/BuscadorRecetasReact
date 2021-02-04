@@ -20,7 +20,7 @@ export const Recipes = () => {
 	return (
 		<main className='container'>
 			<ArrowBackIcon
-				style={{ position: "absolute", top: 0, left: 0 }}
+				className='arrow-icon'
 				onClick={() => dispatch({ type: "CLEAN_RECIPES" })}
 			/>
 			{recipesArray.map((recipe: IRecipe) => (

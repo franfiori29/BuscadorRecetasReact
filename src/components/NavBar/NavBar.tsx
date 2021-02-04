@@ -9,26 +9,11 @@ function NavBar() {
 
 	return (
 		<header>
-			<div
-				className='items-container'
-				// style={{
-				// 	display: "flex",
-				// 	alignItems: "center",
-				// 	justifyContent: "center",
-				// 	padding: "0 10px",
-				// }}
-			>
+			<div className='items-container'>
 				<span className='navbar-item'>ABOUT US</span>
 				<span className='navbar-item'>HELP</span>
 			</div>
-			<div
-				style={{
-					position: "absolute",
-					left: "50%",
-					transform: "translate(-50%)",
-					cursor: "pointer",
-				}}
-			>
+			<div className='logo-container'>
 				<img
 					src={logo}
 					alt='logo'
