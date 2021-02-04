@@ -125,7 +125,7 @@ export default function RecipeDetail({
 							<FavoriteIcon
 								className={`${hover} recipe-icon`}
 								onMouseOver={() => setHover("red")}
-								onMouseOut={() => setHover("")}
+								onMouseOut={() => setHover("grey")}
 								onClick={handleClick}
 								style={{
 									color: JSON.parse(localStorage.getItem("likes") as string)?.[
@@ -134,7 +134,6 @@ export default function RecipeDetail({
 										? "red"
 										: "grey",
 								}}
-								size='large'
 							/>
 							{recipe.likes}
 						</span>
