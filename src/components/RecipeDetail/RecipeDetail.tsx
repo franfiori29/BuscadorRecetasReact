@@ -111,11 +111,14 @@ export default function RecipeDetail({
 					<div className='recipe-divider'></div>
 					<div className='recipe-info-container'>
 						<span className='recipe-servings'>
-							<RestaurantIcon color='grey' className='recipe-icon' />
+							<RestaurantIcon
+								style={{ color: "grey" }}
+								className='recipe-icon'
+							/>
 							{recipe.servings} SERVINGS
 						</span>
 						<span className='recipe-servings'>
-							<TimerIcon color='grey' className='recipe-icon' />
+							<TimerIcon style={{ color: "grey" }} className='recipe-icon' />
 							{recipe.readyInMinutes} MINUTES
 						</span>
 						<span className='recipe-servings'>
@@ -123,13 +126,6 @@ export default function RecipeDetail({
 								className={`${hover} recipe-icon`}
 								onMouseOver={() => setHover("red")}
 								onMouseOut={() => setHover("")}
-								color={
-									JSON.parse(localStorage.getItem("likes") as string)?.[
-										recipe.id
-									]
-										? "red"
-										: "grey"
-								}
 								onClick={handleClick}
 								style={{
 									color: JSON.parse(localStorage.getItem("likes") as string)?.[
