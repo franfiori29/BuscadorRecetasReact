@@ -11,6 +11,7 @@ import ArrowBackIcon from "@material-ui/icons/ArrowBack";
 import RestaurantIcon from "@material-ui/icons/Restaurant";
 import TimerIcon from "@material-ui/icons/Timer";
 import FavoriteIcon from "@material-ui/icons/Favorite";
+const { REACT_APP_BACK } = process.env;
 
 interface IRecipeDetail {
 	id: string;
@@ -46,11 +47,11 @@ export default function RecipeDetail({
 	}, [chart]);
 
 	useEffect(() => {
-		axios.get("http://localhost:4000").then((data) => {
+		axios.get(`${REACT_APP_BACK}`).then((data) => {
 			dispatch({ type: "GET_ASIDE", payload: data.data });
 		});
 		typeof detail.likes === "number" ||
-			axios.get(`http://localhost:4000/${id}`).then((res) => {
+			axios.get(`${REACT_APP_BACK}${id}`).then((res) => {
 				dispatch(getDetailLikes(res.data));
 			});
 	}, [detail, dispatch, id]);

@@ -1,6 +1,6 @@
 import axios from "axios";
 import { Dispatch } from "react";
-const { REACT_APP_API_KEY } = process.env;
+const { REACT_APP_API_KEY, REACT_APP_BACK } = process.env;
 
 export function loadingSearch() {
 	return {
@@ -79,7 +79,7 @@ export interface detailLikesBody {
 export const setDetailLikes = (body: detailLikesBody) => {
 	return async (dispatch: Dispatch<any>) => {
 		axios
-			.post("http://localhost:4000/", body)
+			.post(`${REACT_APP_BACK}`, body)
 			.then((data) =>
 				dispatch({ type: "SET_DETAIL_LIKES", payload: data.data })
 			);

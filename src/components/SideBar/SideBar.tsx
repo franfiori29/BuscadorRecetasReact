@@ -4,6 +4,7 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import { Icon } from "semantic-ui-react";
 import { IRecipe } from "../Recipe/Recipe";
+const { REACT_APP_BACK } = process.env;
 
 const SideBar = () => {
 	const dispatch = useDispatch();
@@ -12,7 +13,7 @@ const SideBar = () => {
 	);
 
 	useEffect(() => {
-		axios.get("http://localhost:4000").then((data) => {
+		axios.get(`${REACT_APP_BACK}`).then((data) => {
 			dispatch({ type: "GET_ASIDE", payload: data.data });
 		});
 	}, [dispatch]);
