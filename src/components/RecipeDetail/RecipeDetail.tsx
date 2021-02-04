@@ -139,7 +139,7 @@ export default function RecipeDetail({
 							{recipe.likes}
 						</span>
 					</div>
-					<div>
+					<div className='recipe-ingredients-container'>
 						<p className='recipe-ingredients-title'>INGREDIENTS</p>
 						{recipe.extendedIngredients.map((ing: any, i: number) => (
 							<ul className='recipe-ingredients-list' key={i}>
