@@ -13,6 +13,7 @@
   src: local('Montserrat'), url(./assets/fonts/Montserrat-Regular.otf) format('truetype');
 }
 
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200;300;400;500;600;700&display=swap');
 :root {
   --clr-gray: #868686;
   --clr-dark: #2C2E2E;
@@ -27,7 +28,7 @@ body {
 }
 
 code {
-  font-family: 'Aristotelica', source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+  font-family: Oswald, source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
 }
 
 /* NAVBAR */
@@ -68,6 +69,7 @@ section {
   color: white;
   background-color: var(--clr-dark);
   padding-top: 30px;
+  font-family: 'Oswald';
 }
 
 .section-header {
@@ -121,10 +123,11 @@ main {
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 20px;
+  font-size: 18px;
+  font-weight: 800;
   width: 80%;
   margin: auto;
-  font-family: 'Aristotelica';
+  /* font-family: 'Oswa'; */
 }
 
 .home-div {
@@ -144,12 +147,14 @@ main {
   font-weight: 500;
   color: #333333;
   width: 80%;
+  font-family: 'Oswald', sans-serif;
 }
 
 form {
   display: flex;
   justify-content: center;
   align-items: center;
+  position: relative;
 }
 
 form input {
@@ -175,6 +180,7 @@ form button {
 
 .suggestions-container {
   margin-top: 50px;
+  font-family: 'Oswald';
 }
 
 .suggestions-container h3 {
@@ -260,7 +266,8 @@ form button {
   width: 100%;
   margin: 0 auto;
   position: relative;
-  font-family: 'Aristotelica';
+  font-family: 'Oswald';
+  text-align: center;
   color: var(--clr-gray)
 }
 
@@ -350,33 +357,81 @@ form button {
 /* FOOTER */
 
 footer {
-  font-size: 20px;
+  font-size: 22px;
   height: 150px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  font-family: 'Oswald';
 }
 
 .MuiButton-label {
   font-size: 20px;
 }
 
-@media screen and (max-width:900px) {
-  aside {
-    display: none !important;
+.list {
+  /* fontSize: 15px
+						display: flex
+						flexDirection: column
+						alignItems: flex-start
+						flex: 1 */
+  padding-left: 80px;
+}
+
+.recipe-likes {
+  display: flex;
+  align-items: flex-end;
+}
+
+.error-icon {
+  color: red;
+  position: absolute;
+  left: 30px;
+}
+
+@media screen and (max-width:720px) {
+  .image-front {
+    display: none;
   }
-  main {
+  .home-div {
     width: 100%;
   }
-  .btnSidebar {
-    display: block;
-    position: absolute;
-    top: 0;
-    left: 0;
+  .mainform {
+    margin: 0 auto;
+    position: relative;
   }
-  /* .navbar {
-    display: block;
-    background-color: red;
-  } */
+  form {
+    flex-wrap: wrap;
+  }
+  .error-icon {
+    top: 14px;
+    right: 10px;
+  }
+  input {
+    flex-basis: 100%;
+  }
+  form button {
+    margin-top: 10px;
+    width: 100%;
+    border-radius: 0;
+  }
+  .recipe-divider {
+    margin-top: 20px;
+    width: 100%;
+  }
+  .list {
+    padding-left: 0px;
+  }
+  footer p {
+    width: 80%;
+    text-align: center;
+  }
+  footer div {
+    display: flex;
+    flex-direction: column;
+  }
+  footer span {
+    margin-bottom: 10px;
+  }
 }

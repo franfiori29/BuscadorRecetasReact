@@ -5,6 +5,8 @@ import { Redirect } from "react-router-dom";
 import Loader from "./../Loader/Loader";
 import homeImage from "../../assets/images/home.jpeg";
 import SearchIcon from "@material-ui/icons/Search";
+import ErrorIcon from "@material-ui/icons/Error";
+
 import Axios from "axios";
 const { REACT_APP_API_KEY } = process.env;
 
@@ -18,6 +20,9 @@ const MainForm = () => {
 	const recipesArray = useSelector(
 		(state: RootStateOrAny) => state.recipes.recipesArray
 	);
+	const error: boolean = useSelector(
+		(state: RootStateOrAny) => state.recipes.error
+	);
 	const dispatch = useDispatch();
 
 	const [input, setInput] = useState<string>("");
@@ -25,11 +30,13 @@ const MainForm = () => {
 
 	const handleSubmit = (e: React.FormEvent) => {
 		e.preventDefault();
+		window.scrollTo(0, 0);
 		let query = input.trim().split(" ").join(",");
 		dispatch(getRecipes(query));
 	};
 
 	const handleChange = (e: React.FormEvent<HTMLInputElement>) => {
+		if (error) dispatch({ type: "CLEAN_ERROR" });
 		let value = e.currentTarget.value;
 		if (value.slice(-2) === "  ")
 			setInput(value.substring(0, value.length - 1));
@@ -51,7 +58,7 @@ const MainForm = () => {
 	if (loading) return <Loader />;
 	return (
 		<main className='mainform'>
-			<div className='home-div'>
+			<div className='home-div image-front'>
 				<img src={homeImage} alt='home' />
 			</div>
 			<div className='home-div'>
@@ -61,10 +68,16 @@ const MainForm = () => {
 					</h1>
 
 					<form onSubmit={handleSubmit}>
+						{error && (
+							<ErrorIcon
+								className='error-icon'
+								// style={{ color: "red", position: "absolute", right: 0 }}
+							/>
+						)}
 						<input
 							type='text'
 							required
-							placeholder='Example: CHOCOLATE STRAWBERRY'
+							placeholder='BACON EGG BREAD'
 							value={input}
 							onChange={handleChange}
 						/>

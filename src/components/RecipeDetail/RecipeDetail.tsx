@@ -96,7 +96,7 @@ export default function RecipeDetail({
 						flexDirection: "column",
 						alignItems: "flex-start",
 						flex: 1,
-						paddingLeft: "80px",
+						// paddingLeft: "80px",
 					}}
 				>
 					<h1 className='recipe-detail-title'>
@@ -122,7 +122,7 @@ export default function RecipeDetail({
 							<TimerIcon style={{ color: "grey" }} className='recipe-icon' />
 							{recipe.readyInMinutes} MINUTES
 						</span>
-						<span className='recipe-servings'>
+						<span className='recipe-servings recipe-likes'>
 							<FavoriteIcon
 								className={`${hover} recipe-icon`}
 								onMouseOver={() => setHover("red")}

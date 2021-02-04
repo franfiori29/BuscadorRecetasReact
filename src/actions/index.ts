@@ -23,6 +23,7 @@ export const getRecipes = (data: string) => {
 			url: `https://api.spoonacular.com/recipes/findByIngredients?ingredients=${data}&number=20`,
 		})
 			.then((res) => {
+				if (!res.data.length) return dispatch({ type: "ERROR_RECIPES" });
 				dispatch({ type: "GET_RECIPES", payload: res.data });
 			})
 			.catch((err) => console.log(err));

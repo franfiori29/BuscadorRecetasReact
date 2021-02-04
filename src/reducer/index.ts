@@ -45,6 +45,24 @@ const reducer = (state = initialState, action: IAction) => {
 					error: false,
 				},
 			};
+		case "ERROR_RECIPES":
+			return {
+				...state,
+				recipes: {
+					loading: false,
+					recipesArray: [],
+					error: true,
+				},
+			};
+		case "CLEAN_ERROR":
+			return {
+				...state,
+				recipes: {
+					loading: false,
+					recipesArray: [],
+					error: false,
+				},
+			};
 		case "CLEAN_RECIPES":
 			return {
 				...state,
